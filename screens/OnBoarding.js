@@ -6,12 +6,12 @@ import Paginator from "../components/Paginator";
 import Icon from 'react-native-vector-icons/Feather';
 
 const OnBoarding = () => {
+  const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   });
-  const navigation = useNavigation();
   //const scrollX = useRef(new Animated.Value(0).current);
   const {width} = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +20,7 @@ const OnBoarding = () => {
   const storeData = async () => {
     try {
       await AsyncStorage.setItem("@viewedOnboarding", 'yes');
-      navigaton.navigate('Home');
+      navigation.navigate('HomeScreen');
     } catch (e) {
       // saving error
     }
@@ -75,7 +75,7 @@ const OnBoarding = () => {
           <Image source={{uri: item.image}} style={{ resizeMode: 'contain', width, justifyContent: 'center', flex: 0.6}}/>
           <View className='flex-[0.1] rounded-t-[30px]' style={{width, flex: 0.4}}>
             <Text className='font-[800] text-center mb-2 text-xl text-headingColor'>{item.title}</Text>
-            <Text className='font-[300] text-center px-[64px] text-slate-400'>{item.description}</Text>
+            {/*<Text className='font-[300] text-center px-[64px] text-slate-400'>{item.description}</Text>*/}
           </View>
         </View>)}/>
         {/* <Paginator data={slides} /> */}
